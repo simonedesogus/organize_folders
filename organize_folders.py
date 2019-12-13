@@ -26,7 +26,8 @@ EXT_EXE = ['.exe']
 EXTS = [EXT_PDF, EXT_VIDEO, EXT_IMAGE, EXT_DOCUMENT, EXT_ZIP]
 FOLDERS = ['PDF', 'VIDEO', 'IMAGE', 'DOCUMENT', 'ZIP']
 
-folder_to_track = os.path.abspath("C:\\Users\\simon\\Downloads\\")
+path = "C:\\Users\\simon\\Downloads\\"
+folder_to_track = os.path.abspath(path)
 exceptions = []
 time_to_sleep = 5
 
@@ -36,8 +37,9 @@ class myHandler(FileSystemEventHandler):
             for i in range(len(EXTS)):
                 for ext in EXTS[i]:
                     if(filename.endswith(ext)):
-                        src = folder_to_track + filename
-                        destination_folder = folder_to_track + FOLDERS[i] + '\\' + filename
+                        src = os.path.join(folder_to_track, filename)
+                        tmp_path = os.path.join(FOLDERS[i], filename)
+                        destination_folder = os.path.join(folder_to_track, tmp_path)
                         try:
                             os.rename(src, destination_folder)
                         except(Exception) as e:
