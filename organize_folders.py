@@ -14,22 +14,27 @@ and automatically moves to the correct folder based on the file's extension.
 Some exception might be triggered.
 
 Example: A file is currently in use by a program.
+
+NOTE: Create the folders contained in the FOLDERS list
 """
 
-EXT_PDF = ['.pdf', '.epub']
+#Add more extension as you need them
+EXT_PDF = ['.pdf', '.epub', '.mobi']
 EXT_VIDEO = ['.mp4', '.mkv', '.wav', '.m4a', '.mov', '.avi', '.flv']
+EXT_MUSIC = ['.mp3']
 EXT_IMAGE = ['.jpeg', '.jpg', '.png', '.svg', '.bmp']
 EXT_DOCUMENT = ['.txt', '.doc','.docx','.html','.odt', '.xlsx']
 EXT_ZIP = ['.rar', '.zip', '.gz']
-EXT_EXE = ['.exe']
+EXT_EXE = ['.exe', '.msi']
 
-EXTS = [EXT_PDF, EXT_VIDEO, EXT_IMAGE, EXT_DOCUMENT, EXT_ZIP]
-FOLDERS = ['PDF', 'VIDEO', 'IMAGE', 'DOCUMENT', 'ZIP']
+EXTS = [EXT_PDF, EXT_VIDEO, EXT_MUSIC, EXT_IMAGE, EXT_DOCUMENT, EXT_ZIP, EXT_EXE]
+FOLDERS = ['PDFs', 'VIDEOS', 'MUSIC', 'IMAGES', 'DOCUMENTS', 'ZIPs', 'EXEs']
 
+#Modify this to the folder you want to track
 path = "C:\\Users\\simon\\Downloads\\"
 folder_to_track = os.path.abspath(path)
-exceptions = []
-time_to_sleep = 5
+
+time_to_sleep = 10
 
 class myHandler(FileSystemEventHandler):
     def on_modified(self, event):
